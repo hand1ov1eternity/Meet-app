@@ -16,45 +16,57 @@ const oAuth2Client = new google.auth.OAuth2(
 
 module.exports.getCalendarEvents = async (event) => {
   // Decode the access token from the path parameters
-  const accessToken = decodeURIComponent(`${event.pathParameters.access_token}`);
+  const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
+
+  // Set the access token as credentials in oAuth2Client
+  oAuth2Client.setCredentials({ access_token });
 
   // Return a new Promise for asynchronous operations
   return new Promise((resolve, reject) => {
-    // Skeleton for fetching calendar events will go here
-    // Use the access token and calendar API to get the events
-    oAuth2Client.setCredentials({ access_token: accessToken });
-
     calendar.events.list(
       {
         calendarId: CALENDAR_ID,
         auth: oAuth2Client,
-        maxResults: 10, // Limit the results (adjust as needed)
-        timeMin: new Date().toISOString(), // Fetch events from current time
+        timeMin: new Date().toISOString(), // Fetch events starting from now
+        singleEvents: true, // Expand recurring events into single events
+        orderBy: "startTime", // Order by event start time
       },
-      (error, res) => {
+      (error, response) => {
         if (error) {
-          return reject(error);
+          return reject(error); // Reject promise with the error
         }
-        return resolve(res.data);
+        return resolve(response); // Resolve promise with the response
       }
     );
   })
     .then((results) => {
-      // Respond with calendar events
+      // Respond with the fetched calendar events
       return {
         statusCode: 200,
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Credentials': true,
         },
-        body: JSON.stringify(results),
+        body: JSON.stringify({ events: results.data.items }), // Format the event data
       };
     })
     .catch((error) => {
-      // Handle errors
+      // Handle errors if the promise is rejected
+      let errorMessage = "An error occurred while fetching calendar events.";
+      if (error.response) {
+        // Handle API errors (e.g., rate limit, authentication issues)
+        errorMessage = error.response.data.error.message || errorMessage;
+      } else if (error.message) {
+        // Handle network errors or unexpected issues
+        errorMessage = error.message;
+      }
+      
       return {
         statusCode: 500,
-        body: JSON.stringify(error),
+        body: JSON.stringify({
+          message: errorMessage,
+          error: error.message || "Unknown error",
+        }),
       };
     });
 };

@@ -14,59 +14,50 @@ const oAuth2Client = new google.auth.OAuth2(
   redirect_uris[0]
 );
 
-module.exports.getCalendarEvents = async (event) => {
-  // Decode the access token from the path parameters
-  const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
+// Export the getAuthURL function
+module.exports.getAuthURL = async () => {
+  const authUrl = oAuth2Client.generateAuthUrl({
+    access_type: "offline",
+    scope: SCOPES,
+  });
 
-  // Set the access token as credentials in oAuth2Client
-  oAuth2Client.setCredentials({ access_token });
+  return {
+    statusCode: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials': true,
+    },
+    body: JSON.stringify({
+      authUrl,
+    }),
+  };
+};
 
-  // Return a new Promise for asynchronous operations
+// Export other functions if needed
+module.exports.getAccessToken = async (event) => {
+  const code = decodeURIComponent(`${event.pathParameters.code}`);
   return new Promise((resolve, reject) => {
-    calendar.events.list(
-      {
-        calendarId: CALENDAR_ID,
-        auth: oAuth2Client,
-        timeMin: new Date().toISOString(), // Fetch events starting from now
-        singleEvents: true, // Expand recurring events into single events
-        orderBy: "startTime", // Order by event start time
-      },
-      (error, response) => {
-        if (error) {
-          return reject(error); // Reject promise with the error
-        }
-        return resolve(response); // Resolve promise with the response
+    oAuth2Client.getToken(code, (error, response) => {
+      if (error) {
+        return reject(error);
       }
-    );
-  })
-    .then((results) => {
-      // Respond with the fetched calendar events
-      return {
-        statusCode: 200,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Credentials': true,
-        },
-        body: JSON.stringify({ events: results.data.items }), // Format the event data
-      };
-    })
-    .catch((error) => {
-      // Handle errors if the promise is rejected
-      let errorMessage = "An error occurred while fetching calendar events.";
-      if (error.response) {
-        // Handle API errors (e.g., rate limit, authentication issues)
-        errorMessage = error.response.data.error.message || errorMessage;
-      } else if (error.message) {
-        // Handle network errors or unexpected issues
-        errorMessage = error.message;
-      }
-      
-      return {
-        statusCode: 500,
-        body: JSON.stringify({
-          message: errorMessage,
-          error: error.message || "Unknown error",
-        }),
-      };
+      return resolve(response);
     });
+  })
+  .then((results) => {
+    return {
+      statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+      },
+      body: JSON.stringify(results),
+    };
+  })
+  .catch((error) => {
+    return {
+      statusCode: 500,
+      body: JSON.stringify(error),
+    };
+  });
 };

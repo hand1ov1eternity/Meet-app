@@ -5,7 +5,13 @@ import React from 'react';
 // eslint-disable-next-line react-refresh/only-export-components, no-unused-vars
 const CitySearch = () => {
     return (
-      <div id="city-search"></div>
+      <div id="city-search">
+        <input
+        type="text"
+        className="city"
+                placeholder="Search for a city"
+      />
+      </div>
     )
    }
 

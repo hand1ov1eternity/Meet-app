@@ -15,4 +15,11 @@ describe('<App /> component', () => {
         expect(AppDOM.querySelector('#event-list')).toBeInTheDocument();
       });
 
+      // eslint-disable-next-line no-undef
+      test('render CitySearch', () => {
+        const AppDOM = render(<App />).container.firstChild;
+        // eslint-disable-next-line no-undef
+        expect(AppDOM.querySelector('#city-search')).toBeInTheDocument();
+        });
+
     });

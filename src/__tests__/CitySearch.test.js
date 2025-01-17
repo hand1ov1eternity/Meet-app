@@ -8,34 +8,38 @@ import CitySearch from '../components/CitySearch';
 
 // eslint-disable-next-line no-undef
 describe('<CitySearch /> component', () => {
-  // eslint-disable-next-line no-undef
-  test('renders text input', () => {
-    const CitySearchComponent = render(<CitySearch />);
-    const cityTextBox = CitySearchComponent.queryByRole('textbox');
+    let CitySearchComponent;
     // eslint-disable-next-line no-undef
-    expect(cityTextBox).toBeInTheDocument();
+    beforeEach(() => {
+      CitySearchComponent = render(<CitySearch />);
+    });
     // eslint-disable-next-line no-undef
-    expect(cityTextBox).toHaveClass('city');
-   });
+    test('renders text input', () => {
+      const cityTextBox = CitySearchComponent.queryByRole('textbox');
+      // eslint-disable-next-line no-undef
+      expect(cityTextBox).toBeInTheDocument();
+      // eslint-disable-next-line no-undef
+      expect(cityTextBox).toHaveClass('city');
+    });
   
-   // eslint-disable-next-line no-undef
-  test('suggestions list is hidden by default', () => {
-    const CitySearchComponent = render(<CitySearch />);
-    const suggestionList = CitySearchComponent.queryByRole('list');
+  
     // eslint-disable-next-line no-undef
-    expect(suggestionList).not.toBeInTheDocument();
-  });
-
+    test('suggestions list is hidden by default', () => {
+      const suggestionList = CitySearchComponent.queryByRole('list');
+      // eslint-disable-next-line no-undef
+      expect(suggestionList).not.toBeInTheDocument();
+    });
+  
+  
     // eslint-disable-next-line no-undef
     test('renders a list of suggestions when city textbox gains focus', async () => {
-        const CitySearchComponent = render(<CitySearch />);
-        const user = userEvent.setup();
-        const cityTextBox = CitySearchComponent.queryByRole('textbox');
-        await user.click(cityTextBox);
-        const suggestionList = CitySearchComponent.queryByRole('list');
-        // eslint-disable-next-line no-undef
-        expect(suggestionList).toBeInTheDocument();
-        // eslint-disable-next-line no-undef
-        expect(suggestionList).toHaveClass('suggestions');
-      });
-});
+      const user = userEvent.setup();
+      const cityTextBox = CitySearchComponent.queryByRole('textbox');
+      await user.click(cityTextBox);
+      const suggestionList = CitySearchComponent.queryByRole('list');
+      // eslint-disable-next-line no-undef
+      expect(suggestionList).toBeInTheDocument();
+      // eslint-disable-next-line no-undef
+      expect(suggestionList).toHaveClass('suggestions');
+    });
+  });

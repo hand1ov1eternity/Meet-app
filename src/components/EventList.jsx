@@ -9,8 +9,7 @@ const EventList = ({ events }) => {
     return (
       // eslint-disable-next-line react/jsx-no-comment-textnodes
       <ul id="event-list">
-        
-        {events.map(event => <Event event={event} />)}
+        {events? events.map(event => <Event key={event.id }event={event} />): null}
       </ul>
     );
    }

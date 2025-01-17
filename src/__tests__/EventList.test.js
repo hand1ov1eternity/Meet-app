@@ -13,11 +13,12 @@ describe('<EventList /> component', () => {
         expect(EventListComponent.queryByRole("list")).toBeInTheDocument();
       });
   
-    // eslint-disable-next-line no-undef
-    test('renders correct number of events', () => {
-        const EventListComponent = render(<EventList events={[{}, {}, {}, {}]} />);
-        
+      // eslint-disable-next-line no-undef
+      test('renders correct number of events', () => {
+        const EventListComponent = render(<EventList events={
+          [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
+        } />);
         // eslint-disable-next-line no-undef
-        expect(EventListComponent.getAllByRole("listitem").length).toBe(4);
+        expect(EventListComponent.getAllByRole("listitem")).toHaveLength(4);
       });
 });

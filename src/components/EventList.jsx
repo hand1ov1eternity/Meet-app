@@ -1,14 +1,19 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
-// eslint-disable-next-line no-unused-vars
+
 import Event from './Event';
 
 
-const EventList = () => {
-  return (
-    <ul id="event-list"></ul>
-  );
-}
+// eslint-disable-next-line react/prop-types
+const EventList = ({ events }) => {
+    return (
+      // eslint-disable-next-line react/jsx-no-comment-textnodes
+      <ul id="event-list">
+        
+        {events.map(event => <Event event={event} />)}
+      </ul>
+    );
+   }
 
 
 export default EventList;

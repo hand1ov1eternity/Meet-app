@@ -15,7 +15,7 @@ const Event = ({ event }) => {
       <p>{event.startTime}</p>
       <p>{event.location}</p>
       <button onClick={toggleDetails}>
-        {showDetails ? 'hide detilas' : 'show details'}
+        {showDetails ? 'hide details' : 'show details'}
       </button>
       {showDetails && (
         <div className="details">

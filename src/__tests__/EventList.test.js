@@ -20,11 +20,9 @@ describe('<EventList /> component', () => {
  
   // eslint-disable-next-line no-undef
   test('renders correct number of events', async () => {
-    // eslint-disable-next-line no-undef
     const allEvents = await getEvents(); 
     EventListComponent.rerender(<EventList events={allEvents} />);
 // eslint-disable-next-line no-undef
 expect(EventListComponent.getAllByRole("listitem")).toHaveLength(allEvents.length);
   });
   });
- 

@@ -1,4 +1,6 @@
-// eslint-disable-next-line no-unused-vars
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+
 import React, { useState } from 'react';
 
 // eslint-disable-next-line react/prop-types

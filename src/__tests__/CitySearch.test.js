@@ -5,7 +5,6 @@ import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CitySearch from '../components/CitySearch';
 
-
 // eslint-disable-next-line no-undef
 describe('<CitySearch /> component', () => {
     let CitySearchComponent;

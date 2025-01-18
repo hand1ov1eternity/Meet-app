@@ -2,6 +2,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import EventList from '../components/EventList';
+import { getEvents } from '../api';
 
 // eslint-disable-next-line no-undef
 describe('<EventList /> component', () => {
@@ -18,11 +19,12 @@ describe('<EventList /> component', () => {
   });
  
   // eslint-disable-next-line no-undef
-  test('renders correct number of events', () => {
-    EventListComponent.rerender(<EventList events={
-      [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }]
-    } />);
+  test('renders correct number of events', async () => {
     // eslint-disable-next-line no-undef
-    expect(EventListComponent.getAllByRole("listitem")).toHaveLength(4);
+    const allEvents = await getEvents(); 
+    EventListComponent.rerender(<EventList events={allEvents} />);
+// eslint-disable-next-line no-undef
+expect(EventListComponent.getAllByRole("listitem")).toHaveLength(allEvents.length);
   });
- });
+  });
+ 

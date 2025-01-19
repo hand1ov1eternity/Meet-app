@@ -2,12 +2,14 @@
 import React from 'react';
 import CitySearch from './components/CitySearch';
 import EventList from './components/EventList';
+import NumberofEvents from './components/NumberofEvents';
 
 const App = () => {
   return (
     <div>
       <CitySearch />
       <EventList />
+      <NumberofEvents />
     </div>
   );
  }

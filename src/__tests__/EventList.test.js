@@ -1,28 +1,41 @@
+/* eslint-disable react/jsx-no-undef */
+/* eslint-disable no-undef */
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, within, waitFor } from '@testing-library/react';
 import EventList from '../components/EventList';
 import { getEvents } from '../api';
+import App from "../App";
 
-// eslint-disable-next-line no-undef
 describe('<EventList /> component', () => {
   let EventListComponent;
-  // eslint-disable-next-line no-undef
   beforeEach(() => {
     EventListComponent = render(<EventList />);
   })
  
-  // eslint-disable-next-line no-undef
+ 
   test('has an element with "list" role', () => {
-    // eslint-disable-next-line no-undef
     expect(EventListComponent.queryByRole("list")).toBeInTheDocument();
   });
  
-  // eslint-disable-next-line no-undef
   test('renders correct number of events', async () => {
     const allEvents = await getEvents(); 
     EventListComponent.rerender(<EventList events={allEvents} />);
-// eslint-disable-next-line no-undef
-expect(EventListComponent.getAllByRole("listitem")).toHaveLength(allEvents.length);
+    expect(EventListComponent.getAllByRole("listitem")).toHaveLength(allEvents.length);
   });
+  });
+
+  describe('<EventList /> integration', () => {
+    
+    test('renders a list of 32 events when the app is mounted and rendered', async () => {
+      const AppComponent = render(<App />);
+      const AppDOM = AppComponent.container.firstChild;
+      const EventListDOM = AppDOM.querySelector('#event-list');
+      await waitFor(() => {
+        const EventListItems = within(EventListDOM).queryAllByRole('listitem');
+        expect(EventListItems.length).toBe(32);
+      });
+    });
+
+
   });

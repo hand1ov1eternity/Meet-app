@@ -3,7 +3,6 @@
 import React from 'react';
 import Event from './Event';
 
-// eslint-disable-next-line react/prop-types
 const EventList = ({ events }) => {
   return (
     <ul id="event-list">

@@ -18,7 +18,7 @@ functions:
       - http:
           path: api/get-auth-url
           method: get
-          cors: true
+          
 
   getAccessToken:
     handler: handler.getAccessToken
@@ -26,7 +26,7 @@ functions:
       - http:
           path: api/token/{code}
           method: get
-          cors: true
+          
 
   getCalendarEvents:
     handler: handler.getCalendarEvents
@@ -34,4 +34,4 @@ functions:
       - http:
           path: api/get-events/{access_token}
           method: get
-          cors: true
+          

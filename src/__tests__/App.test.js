@@ -55,4 +55,39 @@ describe('<App /> integration', () => {
     expect(allRenderedEventItems.length).toBe(berlinEvents.length);
   });
 
+  test('updates the number of events displayed when the user changes the number of events input', async () => {
+    const user = userEvent.setup();
+    const AppComponent = render(<App />);
+    const AppDOM = AppComponent.container.firstChild;
+  
+    const NumberOfEventsDOM = AppDOM.querySelector('#number-of-events');
+    const NumberOfEventsInput = within(NumberOfEventsDOM).queryByTestId('numberOfEventsInput');
+  
+    // Simulate typing a new number in the input
+    await user.type(NumberOfEventsInput, '{backspace}{backspace}10');
+  
+    const EventListDOM = AppDOM.querySelector('#event-list');
+    const allRenderedEventItems = within(EventListDOM).queryAllByRole('listitem');
+  
+    // Check if the number of rendered events matches the new input
+    expect(allRenderedEventItems.length).toBe(10);
+  }); test('updates the number of events displayed when the user changes the number of events input', async () => {
+    const user = userEvent.setup();
+    const AppComponent = render(<App />);
+    const AppDOM = AppComponent.container.firstChild;
+  
+    // Locate the NumberOfEvents input
+    const NumberOfEventsDOM = AppDOM.querySelector('#number-of-events');
+    const NumberOfEventsInput = within(NumberOfEventsDOM).getByTestId('numberOfEventsInput'); // Use getByTestId
+  
+    // Simulate typing into the input field
+    await user.clear(NumberOfEventsInput); // Clear the input
+    await user.type(NumberOfEventsInput, '10'); // Type the new value
+  
+    // Verify the number of rendered events
+    const EventListDOM = AppDOM.querySelector('#event-list');
+    const allRenderedEventItems = within(EventListDOM).queryAllByRole('listitem');
+    expect(allRenderedEventItems.length).toBe(10);
+  });
+
 });

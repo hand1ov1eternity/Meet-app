@@ -8,10 +8,10 @@ const NumberOfEvents = ({ onNumberChange, defaultNumber = 32 }) => {
   const handleInputChange = (event) => {
     const value = event.target.value; // Keep the value as a string for now
     const parsedValue = parseInt(value, 10);
-  
+
     if (!isNaN(parsedValue) && parsedValue > 0) {
       setEventCount(parsedValue); // Update state with the parsed number
-      onNumberChange(parsedValue); // Notify parent with the parsed number
+      if (onNumberChange) onNumberChange(parsedValue); // Safely call onNumberChange
     } else if (value === '') {
       setEventCount(''); // Allow clearing the input
     }
@@ -19,14 +19,15 @@ const NumberOfEvents = ({ onNumberChange, defaultNumber = 32 }) => {
 
   return (
     <div id="number-of-events">
-      <label>Number of Events: </label>
-      <input 
+      <label htmlFor="number-of-events-input">Number of Events: </label>
+      <input
         id="number-of-events-input"
         type="number"
         value={eventCount}
         onChange={handleInputChange}
         role="textbox"
-        />
+        data-testid="numberOfEventsInput"
+      />
     </div>
   );
 };

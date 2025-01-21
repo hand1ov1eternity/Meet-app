@@ -71,20 +71,20 @@ describe('<App /> integration', () => {
   
     // Check if the number of rendered events matches the new input
     expect(allRenderedEventItems.length).toBe(10);
-  }); test('updates the number of events displayed when the user changes the number of events input', async () => {
+  }); 
+  
+  test('updates the number of events displayed when the user changes the number of events input', async () => {
     const user = userEvent.setup();
     const AppComponent = render(<App />);
     const AppDOM = AppComponent.container.firstChild;
   
-    // Locate the NumberOfEvents input
     const NumberOfEventsDOM = AppDOM.querySelector('#number-of-events');
-    const NumberOfEventsInput = within(NumberOfEventsDOM).getByTestId('numberOfEventsInput'); // Use getByTestId
+    const NumberOfEventsInput = within(NumberOfEventsDOM).queryByTestId('numberOfEventsInput');
   
-    // Simulate typing into the input field
-    await user.clear(NumberOfEventsInput); // Clear the input
-    await user.type(NumberOfEventsInput, '10'); // Type the new value
+    // Simulate user input to change the number of events
+    await user.clear(NumberOfEventsInput);
+    await user.type(NumberOfEventsInput, '10');
   
-    // Verify the number of rendered events
     const EventListDOM = AppDOM.querySelector('#event-list');
     const allRenderedEventItems = within(EventListDOM).queryAllByRole('listitem');
     expect(allRenderedEventItems.length).toBe(10);

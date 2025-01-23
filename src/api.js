@@ -22,8 +22,11 @@ const checkToken = async (accessToken) => {
   return result;
  };
 
-export const getEvents = async () => {
-  if (window.location.href.startsWith('http://localhost')) {
+ export const getEvents = async () => {
+  NProgress.start();
+
+  if (window.location.href.startsWith("http://localhost")) {
+    NProgress.done();
     return mockData;
   }
 

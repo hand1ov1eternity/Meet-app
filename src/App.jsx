@@ -9,6 +9,10 @@ import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
 import { getEvents, extractLocations } from './api';
 import './App.css';
+import * as atatus from 'atatus-spa';
+
+atatus.config('9ec039446b0541188b6baeb9051973e3').install();
+atatus.notify(new Error('Test Atatus Setup'));
 
 const App = () => {
   const [events, setEvents] = useState([]);

@@ -41,7 +41,5 @@ const App = () => {
   );
 };
 
-atatus.config('9ec039446b0541188b6baeb9051973e3').install();
-atatus.notify(new Error('Test Atatus Setup'));
 
 export default App;

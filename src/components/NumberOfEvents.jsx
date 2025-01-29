@@ -2,18 +2,20 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 
-const NumberOfEvents = ({ onNumberChange, defaultNumber = 32 }) => {
+const NumberOfEvents = ({ onNumberChange, defaultNumber = 32, setErrorAlert }) => {
   const [eventCount, setEventCount] = useState(defaultNumber);
 
   const handleInputChange = (event) => {
-    const value = event.target.value; // Keep the value as a string for now
+    const value = event.target.value;
     const parsedValue = parseInt(value, 10);
 
-    if (!isNaN(parsedValue) && parsedValue > 0) {
-      setEventCount(parsedValue); // Update state with the parsed number
-      if (onNumberChange) onNumberChange(parsedValue); // Safely call onNumberChange
-    } else if (value === '') {
-      setEventCount(''); // Allow clearing the input
+    if (isNaN(parsedValue) || parsedValue <= 0 || parsedValue > 100) {
+      setEventCount(value); // Keep the input value so user sees what they typed
+      setErrorAlert("Please enter a number between 1 and 100.");
+    } else {
+      setEventCount(parsedValue);
+      setErrorAlert(""); // Clear error if input is valid
+      onNumberChange(parsedValue);
     }
   };
 

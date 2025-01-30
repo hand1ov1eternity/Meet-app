@@ -33,6 +33,7 @@ const App = () => {
   return (
     <div className="App">
       <div className="alerts-container">
+      {console.log("Rendering alerts:", { infoAlert, errorAlert })}
         {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
         {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null} {/* NEW: Display error alert */}
       </div>

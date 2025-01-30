@@ -1,7 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:500);
 .App {
-  text-align: center;
-  padding: 2% 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  justify-content: center; /* Center content vertically */
+  min-height: 100vh; /* Make it take the full height of the viewport */
+  width: 100vw; /* Full viewport width */
 }
 
 .App * {
@@ -34,23 +38,20 @@ input[type="number"] {
   width: 250px;
 }
 
-#city-search {
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  position: relative;
+
+#city-search, 
+.suggestions, 
+.event {
+  align-self: center;
+  width: 100%;
+  max-width: 500px; /* Set a max width for better appearance */
+  text-align: center;
 }
 
-.suggestions {
-  width: 250px;
-  position: absolute;
-  top: 45px;
-  z-index: 2;
-  align-self: center;
-  margin: 0;
-  font-size: 14px;
-  box-shadow: 10px 10px 16px -12px rgba(0, 0, 0, 0.75);
+.event {
+  text-align: center; /* Ensure event content is centered */
 }
+
 
 .suggestions > li {
   text-align: left;
@@ -68,14 +69,6 @@ input[type="number"] {
   background-color: #bcdcdb;
 }
 
-.event {
-  padding: 10px 10px 35px;
-  margin-bottom: 10px;
-  text-align: left;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  position: relative;
-}
 
 .details-btn {
   position: absolute;
@@ -87,17 +80,24 @@ input[type="number"] {
   cursor: pointer;
 }
 
-.alerts-wrapper {
-  position: relative;
-  width: 100%;
-}
-
-.alert-container {
-  position: absolute;
-  top: 50px; /* Adjust to move down */
-  right: 20px; /* Adjust to bring closer */
-  width: 250px;
-  z-index: 1000;
-}
-
-
+  .alerts-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center alerts horizontally */
+    margin-bottom: 20px; /* Space from the elements below */
+  }
+  
+  .alerts-container {
+    position: absolute;
+    top: 20px; /* Adjust vertical position */
+    right: 50%;
+    transform: translateX(50%); /* Center horizontally */
+    width: 250px;
+    z-index: 1000;
+  }
+  
+  .alert-container {
+    text-align: center;
+    width: 100%;
+  }

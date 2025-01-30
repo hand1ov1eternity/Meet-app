@@ -87,10 +87,17 @@ input[type="number"] {
   cursor: pointer;
 }
 
-.alerts-container {
-  position: fixed;
-  top: 0px;
-  right: 20px; 
+.alerts-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.alert-container {
+  position: absolute;
+  top: 50px; /* Adjust to move down */
+  right: 20px; /* Adjust to bring closer */
   width: 250px;
   z-index: 1000;
 }
+
+

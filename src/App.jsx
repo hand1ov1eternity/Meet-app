@@ -42,7 +42,7 @@ const App = () => {
         {console.log("Rendering alerts:", { infoAlert, errorAlert, warningAlert })}
         {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
         {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null} 
-        {warningAlert.length ? <WarningAlert text={warningAlert} className="warning-alert-container" /> : null}
+        {warningAlert.length ? <WarningAlert text={warningAlert} /> : null} {/* NEW: Display warning alert */}
 
       </div>
       <CitySearch 

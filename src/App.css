@@ -38,7 +38,6 @@ input[type="number"] {
   width: 250px;
 }
 
-
 #city-search, 
 .suggestions, 
 .event {
@@ -51,7 +50,6 @@ input[type="number"] {
 .event {
   text-align: center; /* Ensure event content is centered */
 }
-
 
 .suggestions > li {
   text-align: left;
@@ -69,7 +67,6 @@ input[type="number"] {
   background-color: #bcdcdb;
 }
 
-
 .details-btn {
   position: absolute;
   right: 5px;
@@ -81,23 +78,24 @@ input[type="number"] {
 }
 
 .alerts-container {
-  position: absolute;
-  top: 20px;
-  right: 50%;
-  transform: translateX(50%);
-  width: 250px;
-  z-index: 1000;
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
+  align-items: center; /* Center alerts horizontally */
+  margin-bottom: 20px; /* Space from the elements below */
 }
 
-  .warning-alert-container {
-    position: absolute;
-    top: 20px;
-    left: 100px; 
-    width: 250px;
-    z-index: 1000;
-    transform: none; /* Ensure it stays on the left */
-  }
+.alerts-container {
+  position: absolute;
+  top: 20px; /* Adjust vertical position */
+  left: 20px; /* Move alert to the left */
+  width: 250px;
+  z-index: 1000;
+  transform: none; /* Remove horizontal centering */
+}
+
+.alert-container {
+  text-align: center;
+  width: 100%;
+}
+

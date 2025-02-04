@@ -101,3 +101,12 @@ input[type="number"] {
     text-align: center;
     width: 100%;
   }
+
+  .warning-alert-container {
+    position: absolute;
+    top: 20px;
+    left: 20px; /* Moves only the WarningAlert to the left */
+    width: 250px;
+    z-index: 1000;
+    transform: none; /* Ensure it stays on the left */
+  }

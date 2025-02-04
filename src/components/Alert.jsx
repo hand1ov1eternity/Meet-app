@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import  React, { Component } from 'react';
+import React, { Component } from "react";
 
 class Alert extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class Alert extends Component {
       textAlign: "center",
       fontSize: "12px",
       margin: "10px 0",
-      padding: "10px"
+      padding: "10px",
     };
   };
 
@@ -37,17 +37,25 @@ class Alert extends Component {
 class InfoAlert extends Alert {
   constructor(props) {
     super(props);
-    this.color = 'rgb(0, 0, 255)'; // blue
-    this.bgColor = 'rgb(220, 220, 255)'; // light blue
+    this.color = "rgb(0, 0, 255)"; // blue
+    this.bgColor = "rgb(220, 220, 255)"; // light blue
   }
 }
 
 class ErrorAlert extends Alert {
   constructor(props) {
     super(props);
-    this.color = 'rgb(255, 0, 0)'; // red
-    this.bgColor = 'rgb(255, 220, 220)'; // light red
+    this.color = "rgb(255, 0, 0)"; // red
+    this.bgColor = "rgb(255, 220, 220)"; // light red
   }
 }
 
-export { InfoAlert, ErrorAlert };
+class WarningAlert extends Alert {
+  constructor(props) {
+    super(props);
+    this.color = "rgb(255, 165, 0)"; // orange
+    this.bgColor = "rgb(255, 235, 205)"; // light orange
+  }
+}
+
+export { InfoAlert, ErrorAlert, WarningAlert };

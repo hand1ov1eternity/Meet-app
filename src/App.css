@@ -96,7 +96,7 @@ input[type="number"] {
   .warning-alert-container {
     position: absolute;
     top: 20px;
-    left: px; 
+    left: 100px; 
     width: 250px;
     z-index: 1000;
     transform: none; /* Ensure it stays on the left */

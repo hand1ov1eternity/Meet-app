@@ -38,6 +38,7 @@ input[type="number"] {
   width: 250px;
 }
 
+
 #city-search, 
 .suggestions, 
 .event {
@@ -50,6 +51,7 @@ input[type="number"] {
 .event {
   text-align: center; /* Ensure event content is centered */
 }
+
 
 .suggestions > li {
   text-align: left;
@@ -67,6 +69,7 @@ input[type="number"] {
   background-color: #bcdcdb;
 }
 
+
 .details-btn {
   position: absolute;
   right: 5px;
@@ -77,25 +80,25 @@ input[type="number"] {
   cursor: pointer;
 }
 
-.alerts-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center alerts horizontally */
-  margin-bottom: 20px; /* Space from the elements below */
-}
+  .alerts-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center alerts horizontally */
+    margin-bottom: 20px; /* Space from the elements below */
+  }
 
-.alerts-container {
-  position: absolute;
-  top: 20px; /* Adjust vertical position */
-  left: 20px; /* Move alert to the left */
-  width: 250px;
-  z-index: 1000;
-  transform: none; /* Remove horizontal centering */
-}
+  .alerts-container {
+    position: absolute;
+    top: 20px; /* Adjust vertical position */
+    right: 50%;
+    transform: translateX(50%); /* Center horizontally */
+    width: 250px;
+    z-index: 1000;
+  }
 
-.alert-container {
-  text-align: center;
-  width: 100%;
-}
+  .alert-container {
+    text-align: center;
+    width: 100%;
+  }
 

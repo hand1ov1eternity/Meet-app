@@ -80,32 +80,23 @@ input[type="number"] {
   cursor: pointer;
 }
 
-  .alerts-container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center alerts horizontally */
-    margin-bottom: 20px; /* Space from the elements below */
-  }
-  
-  .alerts-container {
-    position: absolute;
-    top: 20px; /* Adjust vertical position */
-    right: 50%;
-    transform: translateX(50%); /* Center horizontally */
-    width: 250px;
-    z-index: 1000;
-  }
-  
-  .alert-container {
-    text-align: center;
-    width: 100%;
-  }
+.alerts-container {
+  position: absolute;
+  top: 20px;
+  right: 50%;
+  transform: translateX(50%);
+  width: 250px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
   .warning-alert-container {
     position: absolute;
     top: 20px;
-    left: 20px; /* Moves only the WarningAlert to the left */
+    left: px; 
     width: 250px;
     z-index: 1000;
     transform: none; /* Ensure it stays on the left */

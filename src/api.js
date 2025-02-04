@@ -1,5 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
+import NProgress from "nprogress";
+import "nprogress/nprogress.css"; 
 import mockData from "./mock-data";
 
 /**
@@ -33,10 +35,9 @@ export const getEvents = async () => {
     return mockData;
   }
 
-  // If the user is offline, load events from localStorage
   if (!navigator.onLine) {
     const events = localStorage.getItem("lastEvents");
-    NProgress.done();
+    NProgress?.done(); // Ensure NProgress is defined
     return events ? JSON.parse(events) : [];
   }
 
@@ -47,19 +48,20 @@ export const getEvents = async () => {
     const url = `https://02nicropke.execute-api.us-east-1.amazonaws.com/dev/api/get-events/${token}`;
 
     try {
+      NProgress.start(); // Start progress bar
       const response = await fetch(url);
       const result = await response.json();
       if (result) {
-        NProgress.done();
-        localStorage.setItem("lastEvents", JSON.stringify(result.events)); // Store events in localStorage
+        localStorage.setItem("lastEvents", JSON.stringify(result.events)); // Store in localStorage
         return result.events;
       }
     } catch (error) {
       console.error("Error fetching events:", error);
+    } finally {
+      NProgress.done(); // Stop progress bar after fetching
     }
   }
-
-  // Fallback if something goes wrong
+  //Fallback
   const storedEvents = localStorage.getItem("lastEvents");
   return storedEvents ? JSON.parse(storedEvents) : [];
 };

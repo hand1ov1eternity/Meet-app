@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import CitySearch from './components/CitySearch';
+import CityEventsChart from './components/CityEventsChart';
 import EventList from './components/EventList';
 import NumberOfEvents from './components/NumberOfEvents';
 import { getEvents, extractLocations } from './api';
@@ -38,23 +39,32 @@ const App = () => {
 
   return (
     <div className="App">
+      <h1>Meet App</h1>
+      
       <div className="alerts-container">
         {console.log("Rendering alerts:", { infoAlert, errorAlert, warningAlert })}
         {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
         {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null} 
-        {warningAlert.length ? <WarningAlert text={warningAlert} /> : null} {/* NEW: Display warning alert */}
-
+        {warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
       </div>
+
       <CitySearch 
         allLocations={allLocations} 
         setCurrentCity={setCurrentCity} 
         setInfoAlert={setInfoAlert} 
       />
+
       <NumberOfEvents 
         defaultNumber={currentNOE} 
         onNumberChange={setCurrentNOE} 
         setErrorAlert={setErrorAlert}
       />
+
+      <CityEventsChart 
+        allLocations={allLocations} 
+        events={events} 
+      />
+
       <EventList events={events} />
     </div>
   );

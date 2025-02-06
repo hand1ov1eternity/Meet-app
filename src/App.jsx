@@ -61,14 +61,11 @@ const App = () => {
         setErrorAlert={setErrorAlert}
       />
       
-      <CityEventsChart 
-        allLocations={allLocations} 
-        events={events} 
-      />
+      <div className="charts-container">
+  <CityEventsChart allLocations={allLocations} events={events} />
+  <EventGenresChart events={events} />
+     </div>
 
-      <EventGenresChart 
-       events={events} 
-      />
       
       <EventList events={events} />
     </div>

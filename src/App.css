@@ -52,6 +52,12 @@ input[type="number"] {
   text-align: center; /* Ensure event content is centered */
 }
 
+.suggestions {
+  position: absolute;
+  top: 149px;
+  z-index: 4;
+}
+
 
 .suggestions > li {
   text-align: left;

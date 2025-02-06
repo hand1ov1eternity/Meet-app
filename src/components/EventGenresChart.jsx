@@ -14,7 +14,7 @@ const EventGenresChart = ({ events }) => {
   const [data, setData] = useState([]);
   const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'Angular'];
 
-  // 🎨 Define colors for each genre
+  // Define colors for each genre
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#A28DFF'];
 
   useEffect(() => {

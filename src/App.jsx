@@ -42,8 +42,7 @@ const App = () => {
     <div className="App">
       <h1>Meet App</h1>
       
-      <div className="alerts-container">
-        {console.log("Rendering alerts:", { infoAlert, errorAlert, warningAlert })}
+      <div className={infoAlert ? 'info-alert-container' : errorAlert ? 'error-alert-container' : 'warning-alert-container'}>
         {infoAlert.length ? <InfoAlert text={infoAlert} /> : null}
         {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null} 
         {warningAlert.length ? <WarningAlert text={warningAlert} /> : null}

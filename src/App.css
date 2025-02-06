@@ -80,26 +80,43 @@ input[type="number"] {
   cursor: pointer;
 }
 
-  .alerts-container {
-    position: relative;
+  .warning-alert-container {
+    position: absolute;
+    top: 20px; /* Adjust vertical position */
+    right: 20%;
+    transform: translateX(50%); /* Center horizontally */
+    width: 250px;
+    z-index: 1000;
     display: flex;
     flex-direction: column;
     align-items: center; /* Center alerts horizontally */
     margin-bottom: 20px; /* Space from the elements below */
   }
 
-  .alerts-container {
+  .info-alert-container {
     position: absolute;
     top: 20px; /* Adjust vertical position */
-    right: 50%;
+    left: 8%;
     transform: translateX(50%); /* Center horizontally */
     width: 250px;
     z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center alerts horizontally */
+    margin-bottom: 20px; /* Space from the elements below */
   }
 
-  .alert-container {
-    text-align: center;
-    width: 100%;
+  .error-alert-container {
+    position: absolute;
+    top: 20px; /* Adjust vertical position */
+    left: 8%;
+    transform: translateX(50%); /* Center horizontally */
+    width: 250px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center alerts horizontally */
+    margin-bottom: 20px; /* Space from the elements below */
   }
 
   .charts-container {

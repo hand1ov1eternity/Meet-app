@@ -14,8 +14,10 @@ const EventGenresChart = ({ events }) => {
   const [data, setData] = useState([]);
   const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'Angular'];
 
+  // 🎨 Define colors for each genre
+  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#A28DFF'];
+
   useEffect(() => {
-    const genres = ['React', 'JavaScript', 'Node', 'jQuery', 'Angular'];
     setData(genres.map((genre) => ({
       name: genre,
       value: events.filter(event => event.summary.includes(genre)).length,
@@ -38,7 +40,7 @@ const EventGenresChart = ({ events }) => {
       <text
         x={x}
         y={y}
-        fill="#8884d8"
+        fill={COLORS[index % COLORS.length]} // Use matching color
         textAnchor={x > cx ? 'start' : 'end'}
         dominantBaseline="central"
       >
@@ -53,12 +55,17 @@ const EventGenresChart = ({ events }) => {
         <Pie
           data={data}
           dataKey="value"
-          fill="#8884d8"
           labelLine={false}
           label={renderCustomizedLabel}
           outerRadius={130}
-        />
+        >
+          {/* Apply colors to each slice */}
+          {data.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
         <Tooltip />
+        <Legend />
       </PieChart>
     </ResponsiveContainer>
   );

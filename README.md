@@ -1,3 +1,7 @@
+Live Version
+
+https://meet-app-rust.vercel.app/
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -153,4 +157,4 @@ As a user, I want to see charts visualizing event details so that I can better u
   ```gherkin
   Given the user is viewing the app,  
   When the app displays event data,  
-  Then a chart should show the number of upcoming events in each city.  
+  Then a chart should show the number of upcoming events in each city.

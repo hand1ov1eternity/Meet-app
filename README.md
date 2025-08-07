@@ -63,7 +63,8 @@ http://localhost:5173
 ---
 
 ## 👤 User Stories & Scenarios
-Feature 1: Filter Events by City
+
+### Feature 1: Filter Events by City
 User Story:
 As a user, I want to filter events by city so I only see events relevant to my location.
 
@@ -75,7 +76,7 @@ Show city suggestions while typing.
 
 Display events for the selected city when a suggestion is clicked.
 
-Feature 2: Show/Hide Event Details
+### Feature 2: Show/Hide Event Details
 User Story:
 As a user, I want to expand or collapse event details so I can view more or less info as needed.
 
@@ -87,7 +88,7 @@ Clicking "Show Details" expands the view.
 
 Clicking "Hide Details" collapses the view.
 
-Feature 3: Specify Number of Events
+### Feature 3: Specify Number of Events
 User Story:
 As a user, I want to control how many events are shown so I’m not overwhelmed.
 
@@ -97,7 +98,7 @@ Show 32 events by default.
 
 Allow users to input a custom number of events.
 
-Feature 4: Use the App When Offline
+### Feature 4: Use the App When Offline
 User Story:
 As a user, I want to use the app offline so I can view cached data.
 
@@ -107,7 +108,7 @@ Show cached event data when offline.
 
 Show an error when trying to search or update settings offline.
 
-Feature 5: Add App Shortcut to Home Screen
+### Feature 5: Add App Shortcut to Home Screen
 User Story:
 As a user, I want to install the app as a shortcut on my device for easy access.
 
@@ -115,7 +116,7 @@ Scenario:
 
 If supported, user can click "Add to Home Screen" to install the PWA.
 
-Feature 6: Display Charts Visualizing Event Details
+### Feature 6: Display Charts Visualizing Event Details
 User Story:
 As a user, I want to view charts so I can understand event trends.
 

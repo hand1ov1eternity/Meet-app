@@ -124,3 +124,27 @@ Scenario:
 
 Show a chart with the number of upcoming events in each city using Recharts.
 
+---
+
+## 📦 Build for Production
+To generate a production build:
+
+npm run build
+You can then deploy the contents of the dist folder using any static hosting service (like Vercel, Netlify, or GitHub Pages).
+
+## 🤝 Contributing
+Contributions are welcome!
+To contribute:
+
+### Fork the repository
+git clone https://github.com/your-username/meet-app.git
+
+### Create a new feature branch
+git checkout -b feature/your-feature
+
+### Make your changes, then commit
+git commit -m "Add your feature"
+
+### Push and open a pull request
+git push origin feature/your-feature
+

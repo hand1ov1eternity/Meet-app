@@ -148,3 +148,7 @@ git commit -m "Add your feature"
 ### Push and open a pull request
 git push origin feature/your-feature
 
+---
+
+> Meet App – Find the future, one event at a time. 🗓️✨ — always a work in progress 🚧.
+

@@ -60,7 +60,9 @@ npm run dev
 Open your browser at:
 http://localhost:5173
 
-👤 User Stories & Scenarios
+---
+
+## 👤 User Stories & Scenarios
 Feature 1: Filter Events by City
 User Story:
 As a user, I want to filter events by city so I only see events relevant to my location.

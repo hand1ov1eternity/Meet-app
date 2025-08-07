@@ -1,160 +1,123 @@
-# Live Version
+# 📅 Meet App
 
-https://meet-app-rust.vercel.app/
+---
 
-# React + Vite
+🔗 **[Live Version »](https://meet-app-rust.vercel.app/)**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## 🎯 Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🌍 **Filter Events by City**  
+  Search and filter events by city to see only what's relevant to you.
 
+- 📖 **Show/Hide Event Details**  
+  Expand or collapse event elements to toggle between a summary and full view.
 
+- 🔢 **Specify Number of Events**  
+  Choose how many events you want displayed at a time.
 
-# Meet App
+- 📡 **Offline Accessibility**  
+  Access previously viewed events even when you're offline.
 
-Meet App is a progressive web application (PWA) designed to help users find, view, and manage upcoming events in various cities. With features like offline access, customizable views, and detailed event information, Meet App offers a user-friendly way to stay informed about events.
+- 📲 **Installable PWA**  
+  Add the app to your device home screen for quick access.
 
-## Features
+- 📊 **Data Visualization**  
+  See trends with interactive charts that show the number of events per city and category.
 
-1. **Filter Events By City**  
-   Users can filter events based on their desired city to see relevant events only.
+---
 
-2. **Show/Hide Event Details**  
-   Users can expand or collapse event elements to view more or less information.
+## ⚙️ Tech Stack
 
-3. **Specify Number of Events**  
-   Users can control the number of events displayed on the page.
+Frontend: React + Vite
 
-4. **Use the App When Offline**  
-   Users can access cached event data when there is no internet connection.
+Styling: CSS3
 
-5. **Add an App Shortcut to the Home Screen**  
-   Users can install the app as a shortcut on their device home screen for quick access.
+State & Data: useState, useEffect, Fetch API
 
-6. **Display Charts Visualizing Event Details**  
-   Users can view visual charts showing event trends across cities.
+PWA Support: Service Workers, Workbox
 
-## User Stories and Scenarios
+Charts: Recharts
 
-### Feature 1: Filter Events By City
-**User Story**:  
-As a user, I want to filter events by city so that I can see events relevant to my location.
+Deployment: Vercel
 
-**Scenarios**:
+---
 
-- **Show upcoming events from all cities when no city is searched**:  
-  ```gherkin
-  Given the user has not entered a city in the search bar,  
-  When the app displays events,  
-  Then the user should see a list of upcoming events from all cities.  
-  ```
+## 🚀 Installation & Setup
 
-- **Show suggestions when searching for a city**:  
-  ```gherkin
-  Given the user starts typing a city name in the search bar,  
-  When the app processes the input,  
-  Then the user should see a list of city suggestions.  
-  ```
+Clone the repository:
 
-- **Select a city from the suggested list**:  
-  ```gherkin
-  Given the user sees a list of suggested cities,  
-  When the user selects a city from the list,  
-  Then the app should display upcoming events only from the selected city.  
-  ```
+git clone https://github.com/your-username/meet-app.git
+cd meet-app
 
-### Feature 2: Show/Hide Event Details
-**User Story**:  
-As a user, I want to expand or collapse event details so that I can view more or less information as needed.
+Install dependencies:
+npm install
 
-**Scenarios**:
+Start the development server:
+npm run dev
 
-- **Event element is collapsed by default**:  
-  ```gherkin
-  Given the user is viewing the list of events,  
-  When the events are displayed,  
-  Then each event element should be collapsed by default.  
-  ```
+Open your browser at:
+http://localhost:5173
 
-- **Expand an event to see details**:  
-  ```gherkin
-  Given the user sees a collapsed event,  
-  When the user clicks on the expand button,  
-  Then the app should display additional details for that event.  
-  ```
+👤 User Stories & Scenarios
+Feature 1: Filter Events by City
+User Story:
+As a user, I want to filter events by city so I only see events relevant to my location.
 
-- **Collapse an event to hide details**:  
-  ```gherkin
-  Given the user sees an expanded event,  
-  When the user clicks on the collapse button,  
-  Then the app should hide the additional details for that event.  
-  ```
+Scenarios:
 
-### Feature 3: Specify Number of Events
-**User Story**:  
-As a user, I want to specify the number of events displayed so that I can control how many events I see at once.
+Display all events by default when no city is entered.
 
-**Scenarios**:
+Show city suggestions while typing.
 
-- **Show 32 events by default**:  
-  ```gherkin
-  Given the user has not specified the number of events,  
-  When the app displays the events list,  
-  Then 32 events should be shown by default.  
-  ```
+Display events for the selected city when a suggestion is clicked.
 
-- **Change the number of events displayed**:  
-  ```gherkin
-  Given the user sees a field to specify the number of events,  
-  When the user enters a new number and confirms,  
-  Then the app should display the specified number of events.  
-  ```
+Feature 2: Show/Hide Event Details
+User Story:
+As a user, I want to expand or collapse event details so I can view more or less info as needed.
 
-### Feature 4: Use the App When Offline
-**User Story**:  
-As a user, I want to use the app offline so that I can still see previously viewed event data.
+Scenarios:
 
-**Scenarios**:
+Events are collapsed by default.
 
-- **Show cached data when offline**:  
-  ```gherkin
-  Given the user has accessed event data previously,  
-  And the user is offline,  
-  When the app loads,  
-  Then the app should display the cached event data.  
-  ```
+Clicking "Show Details" expands the view.
 
-- **Show error when search settings change offline**:  
-  ```gherkin
-  Given the user is offline,  
-  When the user attempts to change the city or number of events,  
-  Then the app should display an error message indicating no internet connection.  
-  ```
+Clicking "Hide Details" collapses the view.
 
-### Feature 5: Add an App Shortcut to the Home Screen
-**User Story**:  
-As a user, I want to add an app shortcut to my home screen so that I can quickly access the app.
+Feature 3: Specify Number of Events
+User Story:
+As a user, I want to control how many events are shown so I’m not overwhelmed.
 
-**Scenarios**:
+Scenarios:
 
-- **Install the app as a shortcut**:  
-  ```gherkin
-  Given the user is using a browser that supports PWA installation,  
-  When the user clicks on the "Add to Home Screen" option,  
-  Then the app should install as a shortcut on the user's device home screen.  
-  ```
+Show 32 events by default.
 
-### Feature 6: Display Charts Visualizing Event Details
-**User Story**:  
-As a user, I want to see charts visualizing event details so that I can better understand event trends.
+Allow users to input a custom number of events.
 
-**Scenarios**:
+Feature 4: Use the App When Offline
+User Story:
+As a user, I want to use the app offline so I can view cached data.
 
-- **Show a chart with the number of upcoming events in each city**:  
-  ```gherkin
-  Given the user is viewing the app,  
-  When the app displays event data,  
-  Then a chart should show the number of upcoming events in each city.
+Scenarios:
+
+Show cached event data when offline.
+
+Show an error when trying to search or update settings offline.
+
+Feature 5: Add App Shortcut to Home Screen
+User Story:
+As a user, I want to install the app as a shortcut on my device for easy access.
+
+Scenario:
+
+If supported, user can click "Add to Home Screen" to install the PWA.
+
+Feature 6: Display Charts Visualizing Event Details
+User Story:
+As a user, I want to view charts so I can understand event trends.
+
+Scenario:
+
+Show a chart with the number of upcoming events in each city using Recharts.
+

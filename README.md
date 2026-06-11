@@ -4,6 +4,11 @@
 
 🔗 **[Live Version »](https://meet-app-rust.vercel.app/)**
 
+### Demo Data Notice
+The original version of this project connected to a CareerFoundry Google Calendar via OAuth and AWS Lambda. Since the original third-party calendar is no longer available, the public demo now uses stable sample event data so visitors can reliably test the app’s core features.
+
+The Google Calendar OAuth and serverless AWS integration code remains in the repository, and I plan to connect it to my own Google Calendar for a controlled live API demo.
+
 ---
 
 ## 🎯 Key Features
@@ -147,11 +152,6 @@ git commit -m "Add your feature"
 
 ### Push and open a pull request
 git push origin feature/your-feature
-
-### Demo Data Notice
-The original version of this project connected to a CareerFoundry Google Calendar via OAuth and AWS Lambda. Since the original third-party calendar is no longer available, the public demo now uses stable sample event data so visitors can reliably test the app’s core features.
-
-The Google Calendar OAuth and serverless AWS integration code remains in the repository, and I plan to connect it to my own Google Calendar for a controlled live API demo.
 
 ---
 

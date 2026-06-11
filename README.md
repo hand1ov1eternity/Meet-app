@@ -1,156 +1,154 @@
-# React + Vite
+# 📅 Meet App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+🔗 **[Live Version »](https://meet-app-rust.vercel.app/)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
+## 🎯 Key Features
 
+- 🌍 **Filter Events by City**  
+  Search and filter events by city to see only what's relevant to you.
 
-# Meet App
+- 📖 **Show/Hide Event Details**  
+  Expand or collapse event elements to toggle between a summary and full view.
 
-Meet App is a progressive web application (PWA) designed to help users find, view, and manage upcoming events in various cities. With features like offline access, customizable views, and detailed event information, Meet App offers a user-friendly way to stay informed about events.
+- 🔢 **Specify Number of Events**  
+  Choose how many events you want displayed at a time.
 
-## Features
+- 📡 **Offline Accessibility**  
+  Access previously viewed events even when you're offline.
 
-1. **Filter Events By City**  
-   Users can filter events based on their desired city to see relevant events only.
+- 📲 **Installable PWA**  
+  Add the app to your device home screen for quick access.
 
-2. **Show/Hide Event Details**  
-   Users can expand or collapse event elements to view more or less information.
+- 📊 **Data Visualization**  
+  See trends with interactive charts that show the number of events per city and category.
 
-3. **Specify Number of Events**  
-   Users can control the number of events displayed on the page.
+---
 
-4. **Use the App When Offline**  
-   Users can access cached event data when there is no internet connection.
+## ⚙️ Tech Stack
 
-5. **Add an App Shortcut to the Home Screen**  
-   Users can install the app as a shortcut on their device home screen for quick access.
+Frontend: React + Vite
 
-6. **Display Charts Visualizing Event Details**  
-   Users can view visual charts showing event trends across cities.
+Styling: CSS3
 
-## User Stories and Scenarios
+State & Data: useState, useEffect, Fetch API
 
-### Feature 1: Filter Events By City
-**User Story**:  
-As a user, I want to filter events by city so that I can see events relevant to my location.
+PWA Support: Service Workers, Workbox
 
-**Scenarios**:
+Charts: Recharts
 
-- **Show upcoming events from all cities when no city is searched**:  
-  ```gherkin
-  Given the user has not entered a city in the search bar,  
-  When the app displays events,  
-  Then the user should see a list of upcoming events from all cities.  
-  ```
+Deployment: Vercel
 
-- **Show suggestions when searching for a city**:  
-  ```gherkin
-  Given the user starts typing a city name in the search bar,  
-  When the app processes the input,  
-  Then the user should see a list of city suggestions.  
-  ```
+---
 
-- **Select a city from the suggested list**:  
-  ```gherkin
-  Given the user sees a list of suggested cities,  
-  When the user selects a city from the list,  
-  Then the app should display upcoming events only from the selected city.  
-  ```
+## 🚀 Installation & Setup
+
+Clone the repository:
+
+git clone https://github.com/your-username/meet-app.git
+cd meet-app
+
+Install dependencies:
+npm install
+
+Start the development server:
+npm run dev
+
+Open your browser at:
+http://localhost:5173
+
+---
+
+## 👤 User Stories & Scenarios
+
+### Feature 1: Filter Events by City
+User Story:
+As a user, I want to filter events by city so I only see events relevant to my location.
+
+Scenarios:
+
+Display all events by default when no city is entered.
+
+Show city suggestions while typing.
+
+Display events for the selected city when a suggestion is clicked.
 
 ### Feature 2: Show/Hide Event Details
-**User Story**:  
-As a user, I want to expand or collapse event details so that I can view more or less information as needed.
+User Story:
+As a user, I want to expand or collapse event details so I can view more or less info as needed.
 
-**Scenarios**:
+Scenarios:
 
-- **Event element is collapsed by default**:  
-  ```gherkin
-  Given the user is viewing the list of events,  
-  When the events are displayed,  
-  Then each event element should be collapsed by default.  
-  ```
+Events are collapsed by default.
 
-- **Expand an event to see details**:  
-  ```gherkin
-  Given the user sees a collapsed event,  
-  When the user clicks on the expand button,  
-  Then the app should display additional details for that event.  
-  ```
+Clicking "Show Details" expands the view.
 
-- **Collapse an event to hide details**:  
-  ```gherkin
-  Given the user sees an expanded event,  
-  When the user clicks on the collapse button,  
-  Then the app should hide the additional details for that event.  
-  ```
+Clicking "Hide Details" collapses the view.
 
 ### Feature 3: Specify Number of Events
-**User Story**:  
-As a user, I want to specify the number of events displayed so that I can control how many events I see at once.
+User Story:
+As a user, I want to control how many events are shown so I’m not overwhelmed.
 
-**Scenarios**:
+Scenarios:
 
-- **Show 32 events by default**:  
-  ```gherkin
-  Given the user has not specified the number of events,  
-  When the app displays the events list,  
-  Then 32 events should be shown by default.  
-  ```
+Show 32 events by default.
 
-- **Change the number of events displayed**:  
-  ```gherkin
-  Given the user sees a field to specify the number of events,  
-  When the user enters a new number and confirms,  
-  Then the app should display the specified number of events.  
-  ```
+Allow users to input a custom number of events.
 
 ### Feature 4: Use the App When Offline
-**User Story**:  
-As a user, I want to use the app offline so that I can still see previously viewed event data.
+User Story:
+As a user, I want to use the app offline so I can view cached data.
 
-**Scenarios**:
+Scenarios:
 
-- **Show cached data when offline**:  
-  ```gherkin
-  Given the user has accessed event data previously,  
-  And the user is offline,  
-  When the app loads,  
-  Then the app should display the cached event data.  
-  ```
+Show cached event data when offline.
 
-- **Show error when search settings change offline**:  
-  ```gherkin
-  Given the user is offline,  
-  When the user attempts to change the city or number of events,  
-  Then the app should display an error message indicating no internet connection.  
-  ```
+Show an error when trying to search or update settings offline.
 
-### Feature 5: Add an App Shortcut to the Home Screen
-**User Story**:  
-As a user, I want to add an app shortcut to my home screen so that I can quickly access the app.
+### Feature 5: Add App Shortcut to Home Screen
+User Story:
+As a user, I want to install the app as a shortcut on my device for easy access.
 
-**Scenarios**:
+Scenario:
 
-- **Install the app as a shortcut**:  
-  ```gherkin
-  Given the user is using a browser that supports PWA installation,  
-  When the user clicks on the "Add to Home Screen" option,  
-  Then the app should install as a shortcut on the user's device home screen.  
-  ```
+If supported, user can click "Add to Home Screen" to install the PWA.
 
 ### Feature 6: Display Charts Visualizing Event Details
-**User Story**:  
-As a user, I want to see charts visualizing event details so that I can better understand event trends.
+User Story:
+As a user, I want to view charts so I can understand event trends.
 
-**Scenarios**:
+Scenario:
 
-- **Show a chart with the number of upcoming events in each city**:  
-  ```gherkin
-  Given the user is viewing the app,  
-  When the app displays event data,  
-  Then a chart should show the number of upcoming events in each city.  
+Show a chart with the number of upcoming events in each city using Recharts.
+
+---
+
+## 📦 Build for Production
+To generate a production build:
+
+npm run build
+You can then deploy the contents of the dist folder using any static hosting service (like Vercel, Netlify, or GitHub Pages).
+
+## 🤝 Contributing
+Contributions are welcome!
+To contribute:
+
+### Fork the repository
+git clone https://github.com/your-username/meet-app.git
+
+### Create a new feature branch
+git checkout -b feature/your-feature
+
+### Make your changes, then commit
+git commit -m "Add your feature"
+
+### Push and open a pull request
+git push origin feature/your-feature
+
+---
+
+> Meet App – Find the future, one event at a time. 🗓️✨ — always a work in progress 🚧.
+

@@ -27,43 +27,72 @@ const checkToken = async (accessToken) => {
 };
 
 /**
- * Fetches events data, handling offline mode by storing the last fetched events in localStorage.
- * @returns {Promise<Array|null>} - The list of events or null if unavailable.
+ * Fetches event data for the app.
+ *
+ * In local development or when demo mode is enabled, mock data is returned.
+ * In production, the function attempts to fetch events from the Google Calendar API
+ * via the AWS API Gateway backend. If the request fails, returns cached events from
+ * localStorage or falls back to mock data.
+ *
+ * @returns {Promise<Array>} A list of event objects.
  */
 export const getEvents = async () => {
-  if (window.location.href.startsWith("http://localhost")) {
+  const forceMockData =
+    window.location.href.startsWith("http://localhost") ||
+    import.meta.env.VITE_USE_DEMO_DATA === "true";
+
+  if (forceMockData) {
     return mockData;
   }
 
   if (!navigator.onLine) {
-    const events = localStorage.getItem("lastEvents");
-    NProgress?.done(); // Ensure NProgress is defined
-    return events ? JSON.parse(events) : [];
+    const storedEvents = localStorage.getItem("lastEvents");
+    return storedEvents ? JSON.parse(storedEvents) : mockData;
   }
 
-  const token = await getAccessToken();
+  try {
+    const token = await getAccessToken();
 
-  if (token) {
-    removeQuery();
-    const url = `https://02nicropke.execute-api.us-east-1.amazonaws.com/dev/api/get-events/${token}`;
-
-    try {
-      NProgress.start(); // Start progress bar
-      const response = await fetch(url);
-      const result = await response.json();
-      if (result) {
-        localStorage.setItem("lastEvents", JSON.stringify(result.events)); // Store in localStorage
-        return result.events;
-      }
-    } catch (error) {
-      console.error("Error fetching events:", error);
-    } finally {
-      NProgress.done(); // Stop progress bar after fetching
+    if (!token) {
+      return mockData;
     }
+
+    removeQuery();
+
+    const encodedToken = encodeURIComponent(token);
+    const url = `https://02nicropke.execute-api.us-east-1.amazonaws.com/dev/api/get-events/${encodedToken}`;
+
+    NProgress.start();
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      const errorBody = await response.json().catch(() => null);
+      console.error("Failed to fetch events:", response.status, errorBody);
+
+      const storedEvents = localStorage.getItem("lastEvents");
+      return storedEvents ? JSON.parse(storedEvents) : mockData;
+    }
+
+    const result = await response.json();
+
+    if (Array.isArray(result?.events) && result.events.length > 0) {
+      localStorage.setItem("lastEvents", JSON.stringify(result.events));
+      return result.events;
+    }
+
+    console.warn("No events returned from Google Calendar. Using fallback data.");
+
+    const storedEvents = localStorage.getItem("lastEvents");
+    return storedEvents ? JSON.parse(storedEvents) : mockData;
+  } catch (error) {
+    console.error("Error fetching events:", error);
+
+    const storedEvents = localStorage.getItem("lastEvents");
+    return storedEvents ? JSON.parse(storedEvents) : mockData;
+  } finally {
+    NProgress.done();
   }
-  //Fallback
-  const storedEvents = localStorage.getItem("lastEvents");
-  return storedEvents ? JSON.parse(storedEvents) : [];
 };
 
 
@@ -85,8 +114,9 @@ export const getAccessToken = async () => {
         "https://02nicropke.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url"
       );
       const result = await response.json();
-      return (window.location.href = result.authUrl);
-    }
+      window.location.href = result.authUrl;
+      return null;
+   }
 
     return code && getToken(code);
   }
